@@ -1,0 +1,4 @@
+version_control: git
+src_repo: https://gitbox.apache.org/repos/asf?p=commons-beanutils.git
+tag_prefix: "^commons-beanutils-"
+seperator: "."
