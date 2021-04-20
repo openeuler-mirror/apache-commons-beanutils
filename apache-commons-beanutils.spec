@@ -2,7 +2,7 @@
 %global short_name   commons-%{base_name}
 Name:                apache-%{short_name}
 Version:             1.9.4
-Release:             1
+Release:             2
 Summary:             Java utility methods for accessing and modifying the properties of arbitrary JavaBeans
 License:             ASL 2.0
 BuildArch:           noarch
@@ -34,10 +34,13 @@ sed -i 's/\r//' *.txt
 %mvn_file : %{short_name} %{short_name}-core %{short_name}-bean-collections
 
 %build
-%mvn_build
+%mvn_build --skipTests
 
 %install
 %mvn_install
+
+%check
+xmvn test --batch-mode --offline verify
 
 %files -f .mfiles
 %doc RELEASE-NOTES.txt
@@ -47,5 +50,8 @@ sed -i 's/\r//' *.txt
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Fri Apr 16 2021 maminjie <maminjie1@huawei.com> - 1.9.4-2
+- Move the test to the %check stage
+
 * Wed Jul 29 2020 yaokai <yaokai13@huawei.com> - 1.9.4-1
 - package init
